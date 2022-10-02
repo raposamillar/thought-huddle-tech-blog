@@ -1,1 +1,1 @@
-# Thought Huddle
+# Thought Huddle Tech Blog
