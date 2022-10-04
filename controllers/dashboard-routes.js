@@ -27,13 +27,13 @@ router.get('/edit/:id', withAuth, (req, res) => {
       'id',
       'title',
       'content',
-      'date',
+      'user_id',
       'created_at'
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'username', 'date', 'created_at'],
+        attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username']
