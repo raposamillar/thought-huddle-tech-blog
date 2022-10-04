@@ -25,6 +25,10 @@ Post.init(
         model: 'user',
         key: 'username'
       }
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   },
   {
