@@ -18,11 +18,12 @@ Comment.init(
         len: [1]
       }
     },
-    username: {
-      type: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
-        key: 'username'
+        key:'id'
       }
     },
     post_id: {
@@ -31,10 +32,6 @@ Comment.init(
         model: 'post',
         key: 'id'
       }
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   },
   {

@@ -11,32 +11,25 @@ Post.init(
       primaryKey: true,
       autoIncrement: true
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    username: {
-      type: DataTypes.STRING,
-      references: {
-        model: 'user',
-        key: 'username'
-      }
-    },
-    post_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'post',
+        model: 'user',
         key: 'id'
       }
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
+    title: {
+      type: DataTypes.STRING,
+      // allowNull: false
+    },
+    content: {
+      type: DataTypes.TEXT,
+      // allowNull: false
     }
+    // date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false
+    // }
   },
   {
     sequelize,
@@ -46,4 +39,4 @@ Post.init(
   }  
 );
 
-model.exports = Post;
+module.exports = Post;
