@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     include:User,
     include:Comment
   })
-  .then(dbProductData => res.json(dbProductData))
+  .then(dbPostData => res.json(dbPostData))
   .catch(err => {
     res.status(500).json(err);
   })
