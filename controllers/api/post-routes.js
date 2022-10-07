@@ -3,23 +3,8 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// get all posts
-router.get('/', (req, res) => {
-  console.log('=======================');
-  Post.findAll({
-    include: [
-      {
-        model: User
-      }
-    ]
-  })
-  .then(dbPostData => res.json(dbPostData))
-  .catch(err => {
-    res.status(500).json(err);
-  })
-});  
 
-// get one post
+// get all posts 
 router.get('/:id', (req, res) => {
   console.log('Getting a post.');
   // find a single post by its `id`
