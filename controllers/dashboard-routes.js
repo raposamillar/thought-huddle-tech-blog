@@ -8,8 +8,11 @@ router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   Post.findAll({
-    include:User,
-    include:Comment
+    include: [
+      {
+        model: User
+      }
+    ]
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));

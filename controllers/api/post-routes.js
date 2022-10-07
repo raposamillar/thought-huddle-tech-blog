@@ -7,8 +7,11 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
   console.log('=======================');
   Post.findAll({
-    include:User,
-    include:Comment
+    include: [
+      {
+        model: User
+      }
+    ]
   })
   .then(dbPostData => res.json(dbPostData))
   .catch(err => {
@@ -18,6 +21,7 @@ router.get('/', (req, res) => {
 
 // get one post
 router.get('/:id', (req, res) => {
+  console.log('Getting a post.');
   // find a single post by its `id`
   Post.findOne({
     attributes: {exclude: ['password'] },
@@ -34,10 +38,6 @@ router.get('/:id', (req, res) => {
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
       },
       {
         model: User,
@@ -59,10 +59,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
+  console.log('We are hitting the post post.');
   Post.create({
     title: req.body.title,
     content: req.body.content,
-    post_url: req.body.post_url,
     user_id: req.session.user_id
   })
    .then(dbPostData => res.json(dbPostData))

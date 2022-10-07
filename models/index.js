@@ -14,10 +14,23 @@ Post.hasMany(Comment, {
   onDelete: 'CASCADE'
 });
 
+User.hasMany(Post, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
 Comment.belongsTo(Post, {
   foreignKey: 'post_id',
   onDelete: 'CASCADE'
 });
+
+// User.associate = models => {
+//   User.hasMany(models.Post, {
+//     foreignKey: 'id',
+//     sourceKey: 'user_id',
+//     onDelete: 'CASCADE'
+//   });
+// };
 
 // User.belongsToMany(Post, {
 //   foreignKey: 'user_id',
