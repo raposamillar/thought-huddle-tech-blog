@@ -2,9 +2,50 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
-  Comment.findAll()
-    .then(dbCommentData => res.json(dbCommentData))
+
+// router.get('/', (req, res) => {
+//   Comment.findAll({
+//     attributes: { exclude: ['password'] }
+//     where
+//   })
+//     .then(dbCommentData => res.json(dbCommentData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+
+router.get('/:id', (req, res) => {
+  Comment.findOne({
+    attributes: {exclude: ['password'] },
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'comment_text',
+      'user_id',
+      'post_id',
+      'created_at'
+    ],
+    include: [
+      {
+        model: Post,
+        attributes: ['id', 'title', 'content', 'user_id', 'created_at'],
+      }
+      // {
+      //   model: User,
+      //   attributes: ['username']
+      // }
+    ]
+  })
+    .then(dbPostData => {
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbPostData);
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -12,11 +53,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-  // expects => {comment_text: "This is a comment", username: as entered, date: MM/DD/YYYY format}
   Comment.create({
     comment_text: req.body.comment_text,
-    username: req.body.username,
-    date: req.body.date
+    user_id: req.body.user_id,
+    post_id: req.body.post_id
   })
     .then(dbCommentData => res.json(dbCommentData))
     .catch(err => {

@@ -13,7 +13,6 @@ router.get('/', withAuth, (req, res) => {
         model: User,
         where: {id: req.session.user_id}
       }
-      
     ]
   })
     .then(dbPostData => {

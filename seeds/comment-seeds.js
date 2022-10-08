@@ -6,7 +6,7 @@ const commentdata = [
     user_id: 1,
     post_id: 1
   }
-]
+];
 
 const seedComments = () => Comment.bulkCreate(commentdata);
 
