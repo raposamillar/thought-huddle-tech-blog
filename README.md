@@ -13,7 +13,8 @@
 
   ## Description 
   Thought Huddle Tech Blog is a CMS-style site in which a user may publish articles, blog posts, thoughts, and opinions on any tech-relevant subject.<br>
-  <a href="https://serene-refuge-16852.herokuapp.com/">Link to Deployed Application on Heroku</a>
+  <a href="https://serene-refuge-16852.herokuapp.com/">Link to Deployed Application on Heroku</a><br><br>
+  N.B.: Bootcamp study project
   
   ## Installation 
   <br>1. Node.js (npm init)<br>2. npm i express-handlebars@6.0.6<br>3. npm i mysql2@2.3.3<br>4. npm i sequelize@6.23.2<br>5. npm i dotenv@16.0.3<br>6. npm i bcrypt@5.0.1<br>7. npm i express@4.18.1<br>8. npm i express-session@1.17.3<br>9. npm i connect-session-sequelize<br>10. npm install --save-dev nodemon@2.0.20
